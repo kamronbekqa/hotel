@@ -1,0 +1,66 @@
+.activities-section-winter {
+  padding: 160px 0;
+  background: var(--clr-text-main);
+  color: var(--clr-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.activities-section-winter::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.sc-subtitle.inverted {
+  color: var(--clr-accent);
+}
+
+.sc-title.inverted {
+  color: var(--clr-white);
+}
+
+.glass-activity-card.inverted {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+  border-radius: var(--radius-xl);
+}
+
+.glass-activity-card.inverted:hover {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.glass-activity-card.inverted .activity-icon-box {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--clr-accent);
+}
+
+.glass-activity-card.inverted:hover .activity-icon-box {
+  background: var(--clr-accent);
+  color: var(--clr-white);
+  transform: scale(1.1);
+}
+
+.glass-activity-card.inverted .activity-card-title {
+  color: var(--clr-white);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.glass-activity-card.inverted .activity-card-desc {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .activities-section-winter {
+    padding: 100px 0;
+  }
+}

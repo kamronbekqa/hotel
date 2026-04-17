@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --cove-green: #2d5a27;
+  --cove-beige: #f5f1e9;
+  --cove-off-white: #fafafa;
+  --cove-wood: #4a3728;
+  --cove-text: #1a1a1a;
+  --cove-text-light: #666666;
+  --cove-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  --cove-border: 1px solid rgba(74, 55, 40, 0.1);
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+.cove-page {
+  min-height: 100vh;
+  background-color: #f0ede6; /* Earthy background outside the container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: var(--font-sans);
+  color: var(--cove-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The Centered Grounded Container */
+.cove-main-container {
+  width: 100%;
+  max-width: 1200px;
+  background: var(--cove-off-white);
+  box-shadow: var(--cove-shadow);
+  border: 1px solid #d4c7b8; /* Thin wooden-colored frame */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px; /* Subtle grounding */
+}
+
+/* Suble Wooden Texture Overlay for the container */
+.cove-main-container::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Light subtle wood pattern */
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* Navigation Bar */
+.cove-nav {
+  height: 400px; /* Large header image area */
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.cove-nav-blur-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+.cove-nav-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+}
+
+.cove-logo {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: 2px;
+}
+
+.cove-menu {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cove-menu-item {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.cove-menu-item:hover {
+  opacity: 0.7;
+}
+
+.cove-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cove-lang-selector {
+  color: #ffffff;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.cove-btn-login {
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cove-btn-login:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cove-btn-book {
+  background: #ffffff;
+  color: var(--cove-text);
+  border: none;
+  padding: 8px 24px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cove-btn-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Hero Section */
+.cove-hero {
+  padding: 100px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--cove-off-white);
+  position: relative;
+}
+
+.cove-hero-text {
+  max-width: 500px;
+}
+
+.cove-hero-title {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 10px;
+  color: var(--cove-text);
+}
+
+.cove-hero-tagline {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--cove-text-light);
+}
+
+/* Newsletter Box */
+.cove-newsletter {
+  background: white;
+  padding: 40px;
+  border: 1px solid #ebebeb;
+  width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.cove-newsletter-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  display: block;
+  color: var(--cove-text);
+}
+
+.cove-newsletter-input-group {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  align-items: center;
+}
+
+.cove-newsletter-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--cove-text);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.cove-newsletter-input::placeholder {
+  color: #aaa;
+}
+
+.cove-newsletter-submit {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s var(--ease-lux);
+}
+
+.cove-newsletter-submit:hover {
+  transform: translateX(5px);
+}
+
+/* Footer */
+.cove-footer {
+  background: #f7f4f0;
+  padding: 80px 60px;
+  border-top: 1px solid #e8e1d9;
+}
+
+.cove-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.cove-footer-col h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  color: var(--cove-text);
+}
+
+.cove-footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cove-footer-col li {
+  margin-bottom: 12px;
+}
+
+.cove-footer-col a {
+  color: var(--cove-text-light);
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.cove-footer-col a:hover {
+  color: var(--cove-text);
+}
+
+.cove-social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.cove-social-icon {
+  font-size: 1.2rem;
+  color: var(--cove-text);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.cove-social-icon:hover {
+  transform: translateY(-3px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+  .cove-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 30px;
+  }
+  .cove-newsletter {
+    margin-top: 50px;
+    width: 100%;
+  }
+  .cove-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cove-logo { font-size: 1.5rem; }
+  .cove-menu { display: none; }
+  .cove-footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .cove-nav-content { padding: 20px; }
+  .cove-hero-title { font-size: 3.5rem; }
+}

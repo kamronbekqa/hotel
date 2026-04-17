@@ -1,0 +1,116 @@
+:root {
+  /* 1. Brand Palette - Strong Minimalist */
+  --clr-bg-base: #FFFFFF; /* Pure White */
+  --clr-bg-alt: #F8F8F8; /* Off White */
+  --clr-text-main: #111111; /* Almost Black */
+  --clr-text-light: #7A7A7A; /* Minimal Gray */
+  --clr-white: #FFFFFF;
+  
+  /* Primary Nature Accents */
+  --clr-forest: #0F2C1F; /* Deep Forest Green */
+  --clr-gold: #D4A017; /* Warm Gold */
+  --clr-gold-light: #E5C369;
+  --clr-beige: #F5F5DC;
+  --clr-leaf: #4caf50; /* Soft Green */
+  --clr-sand: #f5f5dc; /* Warm Sand */
+  --clr-sky: #e0f7fa; /* Pale Sky */
+  --clr-ocean: var(--clr-forest); /* Override legacy */
+  --clr-accent: var(--clr-gold); /* Override legacy */
+
+  /* Gradients - Disabled for minimal */
+  --gradient-sunset: none;
+  --glow-warm: transparent;
+
+  /* 2. Typography */
+  --font-heading: 'Playfair Display', serif; /* Luxury Serif */
+  --font-body: 'Outfit', sans-serif; /* Modern Sans */
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Outfit', sans-serif;
+  
+  --text-h1: clamp(40px, 8vw, 84px);
+  --text-h2: clamp(32px, 5vw, 48px);
+  --text-h3: clamp(24px, 3vw, 32px);
+  --text-body: 16px;
+  --text-body-lg: 18px;
+  
+  --line-height-heading: 1.1;
+  --line-height-body: 1.6;
+  --letter-spacing-heading: -0.02em;
+  --letter-spacing-body: 0.01em;
+
+  /* 3. Spacing System (8px scale) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-15: 120px;
+
+  /* Aliases */
+  --space-xs: var(--space-1);
+  --space-sm: var(--space-2);
+  --space-md: var(--space-3);
+  --space-lg: var(--space-4);
+  --space-xl: var(--space-6);
+
+  /* 4. Layout Dimensions */
+  --container-max: 1200px;
+  --section-pad-y-desktop: 120px;
+  --section-pad-y-tablet: 80px;
+  --section-pad-y-mobile: 60px;
+  
+  /* Soft Nature Edges */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 9999px;
+  
+  /* 5. Elevation (Shadows) */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-float: 0 30px 60px -15px rgba(0, 0, 0, 0.15);
+  
+  /* 6. Transitions */
+  --ease-lux: cubic-bezier(0.25, 1, 0.5, 1);
+  --trans-fast: 0.3s var(--ease-lux);
+  --trans-base: 0.5s var(--ease-lux);
+  --trans-slow: 0.8s var(--ease-lux);
+
+  /* Legacy compatibility maps - map to new COVE colors */
+  --color-primary: var(--clr-accent);
+  --color-secondary: var(--clr-ocean);
+  --color-text-main: var(--clr-text-main);
+  --color-text-light: var(--clr-text-light);
+  --color-bg-base: var(--clr-bg-base);
+  --color-white: var(--clr-white);
+  --color-light: var(--clr-bg-alt);
+  --color-dark: var(--clr-ocean);
+  
+  --font-family: var(--font-body);
+  --font-size-base: var(--text-body);
+  --font-size-sm: 14px;
+  --font-size-lg: var(--text-body-lg);
+  
+  --spacing-sm: var(--space-2);
+  --spacing-md: var(--space-3);
+  --spacing-lg: var(--space-4);
+  --spacing-xl: var(--space-6);
+  --transition-speed: var(--trans-fast);
+  --transition-fast: var(--trans-fast);
+  --transition-medium: var(--trans-base);
+  
+  --z-negative: -1;
+  --z-base: 1;
+  --z-elevated: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-nav: 1000;
+  --z-modal-backdrop: 2000;
+  --z-modal-content: 2001;
+}
