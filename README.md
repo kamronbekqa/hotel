@@ -195,3 +195,4 @@ FRONTEND_URL=http://localhost:5173
 ---
 
 **Built with ❤️ for coastal luxury living**
+# hotel
