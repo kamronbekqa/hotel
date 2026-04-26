@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}COVE - Premium Mountain Retreat{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="/" class="logo">COVE</a>
+            <ul class="nav-links">
+                <li><a href="#dachas">Dachalar</a></li>
+                <li><a href="#services">Xizmatlar</a></li>
+                <li><a href="#booking-section">Band qilish</a></li>
+                <li><a href="/admin" class="btn btn-primary" style="padding: 8px 20px;">Admin</a></li>
+            </ul>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>COVE</h4>
+                    <p>Tabiat qo'ynidagi dabdabali dam olish maskanlari. Biz bilan unutilmas lahzalarni his eting.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Sahifalar</h4>
+                    <ul>
+                        <li><a href="/">Bosh sahifa</a></li>
+                        <li><a href="#dachas">Dachalar</a></li>
+                        <li><a href="#services">Xizmatlar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Bog'lanish</h4>
+                    <ul>
+                        <li><a href="#">+998 90 123 45 67</a></li>
+                        <li><a href="#">info@cove.uz</a></li>
+                        <li><a href="#">Toshkent, Bo'stonliq</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 COVE Premium Retreat. Barcha huquqlar himoyalangan.
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

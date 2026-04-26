@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container hero-content">
+        <h1 class="fade-in">Tabiat Qo'ynida Luxury Dam Olish</h1>
+        <p class="fade-in" style="animation-delay: 0.2s;">Eng sara dachalar, so'lim go'shalar va unutilmas hordiq — hammasi COVE bilan.</p>
+        <div class="hero-btns fade-in" style="animation-delay: 0.4s;">
+            <a href="#dachas" class="btn btn-primary">Dachalarni ko'rish</a>
+            <a href="#booking-section" class="btn btn-outline" style="margin-left: 15px;">Hoziroq band qilish</a>
+        </div>
+    </div>
+</section>
+
+<!-- Dachas Section -->
+<section id="dachas" style="padding: 100px 0; background: #fcfcfc;">
+    <div class="container">
+        <h2 class="section-title">Bizning Eng Yaxshi Dachalarimiz</h2>
+        
+        <div class="grid grid-3">
+            {% for dacha in dachas %}
+            <div class="card dacha-card fade-in">
+                <div class="card-image">
+                    {% if dacha.image %}
+                    <img src="{{ dacha.image.url }}" alt="{{ dacha.title }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1000" alt="{{ dacha.title }}">
+                    {% endif %}
+                    <div class="card-tag">{% if dacha.type == 'rent' %}Ijara{% else %}Sotuv{% endif %}</div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>{{ dacha.title }}</h3>
+                        <p class="price">${{ dacha.price }} <span>/ kun</span></p>
+                    </div>
+                    
+                    <p class="location">📍 {{ dacha.location }}</p>
+                    <p class="description">{{ dacha.description|truncatewords:15 }}</p>
+                    
+                    <div class="features">
+                        {% for feature in dacha.features %}
+                        <span class="feature-tag">{{ feature }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <button class="btn btn-primary w-100 open-booking-modal" data-dacha-id="{{ dacha.id }}" data-dacha-title="{{ dacha.title }}">
+                        Bron qilish
+                    </button>
+                </div>
+            </div>
+            {% empty %}
+            <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: #888;">
+                Hozircha dachalar mavjud emas.
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Booking Section -->
+<section id="booking-section" class="booking-section">
+    <div class="container">
+        <div class="booking-card glass-dark">
+            <div class="booking-info">
+                <h2 style="color: #fff;">Dachani hoziroq band qiling</h2>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">Ma'lumotlaringizni qoldiring, biz sizga 15 daqiqa ichida qo'ng'iroq qilamiz.</p>
+                
+                <div class="contact-info-list" style="color: #fff;">
+                    <div class="info-item" style="margin-bottom: 10px;">📞 +998 90 123 45 67</div>
+                    <div class="info-item" style="margin-bottom: 10px;">📍 Toshkent viloyati, Bo'stonliq t.</div>
+                    <div class="info-item" style="margin-bottom: 10px;">🕒 24/7 xizmat ko'rsatamiz</div>
+                </div>
+            </div>
+
+            <form action="{% url 'book_dacha' %}" method="POST" class="booking-form-inline">
+                {% csrf_token %}
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Dachani tanlang</label>
+                        <select name="dacha" required>
+                            <option value="">Tanlang...</option>
+                            {% for dacha in dachas %}
+                            <option value="{{ dacha.id }}">{{ dacha.title }} (${{ dacha.price }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ismingiz</label>
+                        <input type="text" name="name" required placeholder="Ismingiz">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefon raqamingiz</label>
+                        <input type="tel" name="phone" required placeholder="+998 90 ...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mehmonlar</label>
+                        <input type="number" name="guests" min="1" value="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kelish sanasi</label>
+                        <input type="date" name="check_in" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ketish sanasi</label>
+                        <input type="date" name="check_out" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" style="margin-top: 20px;">
+                    Band qilish
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Modal for Booking -->
+<div id="booking-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modal-title">Bron qilish</h2>
+        <form action="{% url 'book_dacha' %}" method="POST" style="margin-top: 20px;">
+            {% csrf_token %}
+            <input type="hidden" name="dacha" id="modal-dacha-id">
+            <div class="form-group">
+                <label style="color: #333;">Ismingiz</label>
+                <input type="text" name="name" required placeholder="Ismingiz" style="background: #f5f5f5; color: #333; border: 1px solid #ddd;">
+            </div>
+            <div class="form-group">
+                <label style="color: #333;">Telefon</label>
+                <input type="tel" name="phone" required placeholder="+998 90 ..." style="background: #f5f5f5; color: #333; border: 1px solid #ddd;">
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label style="color: #333;">Kelish</label>
+                    <input type="date" name="check_in" required style="background: #f5f5f5; color: #333; border: 1px solid #ddd;">
+                </div>
+                <div class="form-group">
+                    <label style="color: #333;">Ketish</label>
+                    <input type="date" name="check_out" required style="background: #f5f5f5; color: #333; border: 1px solid #ddd;">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Tasdiqlash</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .w-100 { width: 100%; }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Modal Logic
+    const modal = document.getElementById('booking-modal');
+    const closeBtn = document.querySelector('.close-modal');
+    const openBtns = document.querySelectorAll('.open-booking-modal');
+
+    openBtns.forEach(btn => {
+        btn.onclick = function() {
+            const dachaId = this.getAttribute('data-dacha-id');
+            const dachaTitle = this.getAttribute('data-dacha-title');
+            document.getElementById('modal-dacha-id').value = dachaId;
+            document.getElementById('modal-title').innerText = dachaTitle + ' - Bron qilish';
+            modal.classList.add('active');
+        }
+    });
+
+    closeBtn.onclick = function() {
+        modal.classList.remove('active');
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.classList.remove('active');
+        }
+    }
+</script>
+{% endblock %}

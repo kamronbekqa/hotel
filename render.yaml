@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: hotel-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # You need to define these variables in the Render Dashboard
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: FRONTEND_URL
+        # This will be updated to the frontend URL on Render once deployed
+        value: https://hotel-frontend.onrender.com
+
+  - type: web
+    name: hotel-frontend
+    env: static
+    rootDir: MAIN_HOTEL
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        # This should point to your Render backend URL
+        value: https://hotel-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
