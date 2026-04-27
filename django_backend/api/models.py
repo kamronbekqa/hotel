@@ -51,7 +51,7 @@ class Booking(models.Model):
     phone = models.CharField(max_length=20)
     check_in = models.DateField()
     check_out = models.DateField()
-    guests = models.IntegerField(validators=[MinValueValidator(1)])
+    guests = models.IntegerField(default=1, validators=[MinValueValidator(1)])
     message = models.TextField(blank=True)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='pending')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, validators=[MinValueValidator(0)])

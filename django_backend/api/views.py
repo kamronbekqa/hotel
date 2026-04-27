@@ -19,32 +19,43 @@ def home(request):
 
 def book_dacha(request):
     if request.method == 'POST':
-        dacha_id = request.POST.get('dacha')
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        check_in = request.POST.get('check_in')
-        check_out = request.POST.get('check_out')
-        guests = request.POST.get('guests', 1)
-        
-        dacha = get_object_or_404(Dacha, id=dacha_id)
-        
-        booking = Booking.objects.create(
-            dacha=dacha,
-            name=name,
-            phone=phone,
-            check_in=check_in,
-            check_out=check_out,
-            guests=guests
-        )
-        
-        # Send Telegram notification
         try:
-            msg = format_booking_message(booking)
-            send_telegram_message(msg)
-        except Exception as e:
-            print(f"Telegram error: {e}")
+            dacha_id = request.POST.get('dacha')
+            name = request.POST.get('name')
+            phone = request.POST.get('phone')
+            check_in = request.POST.get('check_in')
+            check_out = request.POST.get('check_out')
+            guests = request.POST.get('guests') or 1
             
-        messages.success(request, "Bron muvaffaqiyatli qabul qilindi! Tez orada bog'lanamiz.")
+            # Convert guests to int
+            try:
+                guests = int(guests)
+            except (ValueError, TypeError):
+                guests = 1
+            
+            dacha = get_object_or_404(Dacha, id=dacha_id)
+            
+            booking = Booking.objects.create(
+                dacha=dacha,
+                name=name,
+                phone=phone,
+                check_in=check_in,
+                check_out=check_out,
+                guests=guests
+            )
+            
+            # Send Telegram notification
+            try:
+                msg = format_booking_message(booking)
+                send_telegram_message(msg)
+            except Exception as te:
+                print(f"Telegram error: {te}")
+                
+            messages.success(request, "Bron muvaffaqiyatli qabul qilindi! Tez orada bog'lanamiz.")
+        except Exception as e:
+            print(f"Booking error: {e}")
+            messages.error(request, f"Xatolik yuz berdi: {e}")
+            
         return redirect('home')
     return redirect('home')
 

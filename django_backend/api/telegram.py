@@ -3,8 +3,12 @@ import requests
 from django.conf import settings
 
 def send_telegram_message(message):
-    token = '8738276484:AAGNcPudaPY_ZkQ8m0oGUhBqyHi6SqxMZCs'
-    chat_id = '6001392724'
+    token = os.getenv('TELEGRAM_BOT_TOKEN')
+    chat_id = os.getenv('TELEGRAM_CHAT_ID')
+    
+    if not token or not chat_id:
+        print("Telegram token or chat ID not found in environment variables.")
+        return
 
     if not token or not chat_id:
         print('Telegram Bot Token or Chat ID not configured. Notification skipped.')

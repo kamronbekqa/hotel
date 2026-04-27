@@ -23,6 +23,16 @@
         </div>
     </header>
 
+    {% if messages %}
+    <div class="container" style="margin-top: 100px; position: relative; z-index: 1001;">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" style="padding: 15px; margin-bottom: 20px; border-radius: 10px; background: {% if message.tags == 'success' %}#d4edda; color: #155724;{% else %}#f8d7da; color: #721c24;{% endif %} border: 1px solid {% if message.tags == 'success' %}#c3e6cb{% else %}#f5c6cb{% endif %};">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     {% block content %}{% endblock %}
 
     <footer>

@@ -3,7 +3,8 @@
     "dev": "python django_backend/manage.py runserver",
     "migrate": "python django_backend/manage.py migrate",
     "createsuperuser": "python django_backend/manage.py createsuperuser",
-    "collectstatic": "python django_backend/manage.py collectstatic"
+    "collectstatic": "python django_backend/manage.py collectstatic",
+    "seed": "python django_backend/manage.py seed_data"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
